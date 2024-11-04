@@ -1,0 +1,258 @@
+---
+- # ====== List of Values: ACCESS_ROLES ========================
+  id: 8277756750413250
+  identification: 
+    name: ACCESS_ROLES
+
+  subscription: 
+    version-number: 39327579190690
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select role_name d, role_id r
+      from APEX_APPL_ACL_ROLES where application_id = :APP_ID 
+      order by 1
+
+  column-mapping: 
+    return: R
+    display: D
+    default-sort: Use Order By from Query
+
+- # ====== List of Values: EMAIL_USERNAME_FORMAT ===============
+  id: 8285152514413238
+  identification: 
+    name: EMAIL_USERNAME_FORMAT
+
+  subscription: 
+    version-number: 39327579190713
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Email Addresses ==============================
+    id: 8285422037413238
+    entry: 
+      sequence: 1
+      display: Email Addresses
+      return: EMAIL
+
+- # ====== List of Values: FEEDBACK_RATING =====================
+  id: 8302321704413011
+  identification: 
+    name: FEEDBACK_RATING
+
+  subscription: 
+    version-number: 39327579191294
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: Positive =====================================
+    id: 8302632838413010
+    entry: 
+      sequence: 1
+      display: Positive
+      return: 3
+
+    globalization: 
+      template: <span title="#DISPLAY_VALUE#" aria-label="#DISPLAY_VALUE#"><span class="fa fa-smile-o fa-2x feedback-positive" aria-hidden="true" ></span></span>
+
+  - # ====== Entry: Neutral ======================================
+    id: 8303089970413010
+    entry: 
+      sequence: 2
+      display: Neutral
+      return: 2
+
+    globalization: 
+      template: <span title="#DISPLAY_VALUE#" aria-label="#DISPLAY_VALUE#"><span class="fa fa-emoji-neutral fa-2x feedback-neutral" aria-hidden="true" ></span></span>
+
+  - # ====== Entry: Negative =====================================
+    id: 8303499838413010
+    entry: 
+      sequence: 3
+      display: Negative
+      return: 1
+
+    globalization: 
+      template: <span title="#DISPLAY_VALUE#" aria-label="#DISPLAY_VALUE#"><span class="fa fa-frown-o fa-2x feedback-negative" aria-hidden="true" ></span></span>
+
+- # ====== List of Values: FEEDBACK_STATUS =====================
+  id: 8314711599413003
+  identification: 
+    name: FEEDBACK_STATUS
+
+  subscription: 
+    version-number: 39327579191295
+
+  source: 
+    location: Static Values
+
+  entries: 
+  - # ====== Entry: No Action ====================================
+    id: 8315064091413003
+    entry: 
+      sequence: 1
+      display: No Action
+      return: 0
+
+  - # ====== Entry: Acknowledged =================================
+    id: 8315452065413003
+    entry: 
+      sequence: 2
+      display: Acknowledged
+      return: 1
+
+  - # ====== Entry: Open =========================================
+    id: 8315809826413003
+    entry: 
+      sequence: 3
+      display: Open
+      return: 3
+
+  - # ====== Entry: Closed =======================================
+    id: 8316222911413002
+    entry: 
+      sequence: 4
+      display: Closed
+      return: 4
+
+- # ====== List of Values: LOV_SEASONS =========================
+  id: 8611169491781317
+  identification: 
+    name: LOV_SEASONS
+
+  subscription: 
+    version-number: 39327669390757
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: select label, season_id from tp_seasons order by label
+
+  column-mapping: 
+    return: SEASON_ID
+    display: LABEL
+    default-sort: Use Order By from Query
+
+- # ====== List of Values: LOV_CLUBS ===========================
+  id: 8611373886778720
+  identification: 
+    name: LOV_CLUBS
+
+  subscription: 
+    version-number: 39327669398549
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: select label, club_id from tp_clubs order by label
+
+  column-mapping: 
+    return: CLUB_ID
+    display: LABEL
+    default-sort: Use Order By from Query
+
+- # ====== List of Values: TP_CLUBS.LABEL ======================
+  id: 8671045043491428
+  identification: 
+    name: TP_CLUBS.LABEL
+
+  subscription: 
+    version-number: 39327751718882
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TP_CLUBS
+
+  column-mapping: 
+    return: CLUB_ID
+    display: LABEL
+    default-sort: LABEL
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: TP_SEASONS.LABEL ====================
+  id: 8671794395491426
+  identification: 
+    name: TP_SEASONS.LABEL
+
+  subscription: 
+    version-number: 39327751718882
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TP_SEASONS
+
+  column-mapping: 
+    return: SEASON_ID
+    display: LABEL
+    default-sort: LABEL
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: LOV_TEAM_ROLES ======================
+  id: 9790689027933741
+  identification: 
+    name: LOV_TEAM_ROLES
+
+  subscription: 
+    version-number: 39328077935508
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TP_TEAM_ROLES
+
+  column-mapping: 
+    return: TEAM_ROLE_CODE
+    display: LABEL
+    default-sort: LABEL
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: TP_COMPETITIONS.LABEL ===============
+  id: 10746019971981085
+  identification: 
+    name: TP_COMPETITIONS.LABEL
+
+  subscription: 
+    version-number: 39329057182018
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TP_COMPETITIONS
+
+  column-mapping: 
+    return: COMPETITION_ID
+    display: LABEL
+    default-sort: LABEL
+    sort-direction: Ascending (Nulls Last)
+
+- # ====== List of Values: TP_MANAGED_OBJECTS_ROLES.ROLE_CODE ==
+  id: 10976713410105426
+  identification: 
+    name: TP_MANAGED_OBJECTS_ROLES.ROLE_CODE
+
+  subscription: 
+    version-number: 39329239020698
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TP_MANAGED_OBJECTS_ROLES
+
+  column-mapping: 
+    return: ROLE_CODE
+    default-sort: ROLE_CODE
+    sort-direction: Ascending (Nulls Last)
+

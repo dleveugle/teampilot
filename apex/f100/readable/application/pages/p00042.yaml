@@ -1,0 +1,635 @@
+---
+# ====== Page: Competition details ===========================
+id: 42
+identification: 
+  name: Competition details
+  alias: COMPETITION-DETAILS
+  title: Competition details
+  page-group: Competition # 9724339234903066
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - '#APP_FILES#js/RegionDisplaySelector#MIN#.js'
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: &P42_COMPETITION_DESCRIPTION. ===============
+  id: 10035012062353234
+  identification: 
+    name: '&P42_COMPETITION_DESCRIPTION.'
+    type: Contenu statique
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Hero
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-paste
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: Competition region display selector =========
+  id: 10035310777353237
+  identification: 
+    name: Competition region display selector
+    type: Contenu dynamique
+
+  source: 
+    language: PL/SQL
+    pl/sql-function-body-returning-a-clob: 'return pck_pages_42.get_competition_region_display_selector(:P0_USER_ID, :P0_CLUB_ID, :P0_SEASON_ID, :P42_COMPETITION_ID);'
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+
+- # ====== Region: Nouveau =====================================
+  id: 10591773279617609
+  identification: 
+    name: Nouveau
+    type: Contenu statique
+
+  layout: 
+    sequence: 50
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: Nouveau =====================================
+  id: 10592054149617612
+  identification: 
+    name: Nouveau
+    type: Etat classique
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: 'select * from tp_meetings where competition_id = :P42_COMPETITION_ID and team_id = :P42_TEAM_ID'
+    page-items-to-submit: 
+    - P42_COMPETITION_ID
+    - P42_TEAM_ID
+
+  layout: 
+    sequence: 30
+    parent-region: Nouveau # 10591773279617609
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Content Block
+    template-options: 
+    - '#DEFAULT#'
+    - t-ContentBlock--h1
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 15
+
+    appearance: 
+      template-type: Theme
+      template: Content Row
+      template-options: 
+      - '#DEFAULT#'
+      - t-ContentRow--styleCompact
+
+    pagination: 
+      type: Row Ranges X to Y (with next and previous links)
+      display-position: Bottom - Right
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: false
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: MEETING_ID ==================================
+    id: 10592182133617613
+    identification: 
+      column-name: MEETING_ID
+      type: Plain Text
+
+    heading: 
+      heading: Meeting Id
+      alignment: end
+
+    layout: 
+      sequence: 10
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: MEETING_DATE ================================
+    id: 10592270299617614
+    identification: 
+      column-name: MEETING_DATE
+      type: Plain Text
+
+    heading: 
+      heading: Meeting Date
+      alignment: start
+
+    layout: 
+      sequence: 20
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: OPPONENT ====================================
+    id: 10592379470617615
+    identification: 
+      column-name: OPPONENT
+      type: Plain Text
+
+    heading: 
+      heading: Opponent
+      alignment: start
+
+    layout: 
+      sequence: 30
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: TEAM_ID =====================================
+    id: 10592435457617616
+    identification: 
+      column-name: TEAM_ID
+      type: Plain Text
+
+    heading: 
+      heading: Team Id
+      alignment: end
+
+    layout: 
+      sequence: 40
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: COMPETITION_ID ==============================
+    id: 10592534644617617
+    identification: 
+      column-name: COMPETITION_ID
+      type: Plain Text
+
+    heading: 
+      heading: Competition Id
+      alignment: end
+
+    layout: 
+      sequence: 50
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+  - # ====== Column: EXTERNAL ====================================
+    id: 10592634826617618
+    identification: 
+      column-name: EXTERNAL
+      type: Plain Text
+
+    heading: 
+      heading: External
+      alignment: end
+
+    layout: 
+      sequence: 60
+      column-alignment: end
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: true
+
+- # ====== Region: TeamVictoriesBadges =========================
+  id: 10592715378617619
+  identification: 
+    name: TeamVictoriesBadges
+    type: Contenu dynamique
+
+  source: 
+    language: PL/SQL
+    pl/sql-function-body-returning-a-clob: 'return pck_pages_42.get_team_victory_badges_table(:P0_USER_ID, :P42_COMPETITION_ID, :P42_TEAM_ID);'
+    page-items-to-submit: 
+    - P42_TEAM_ID
+    - P42_COMPETITION_ID
+
+  layout: 
+    sequence: 10
+    parent-region: Nouveau # 10591773279617609
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Region
+
+  advanced: 
+    static-id: tp-teamVictoryBadges
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+
+page-items: 
+- # ====== Page Item: P42_COMPETITION_ID =======================
+  id: 10034965116353233
+  identification: 
+    name: P42_COMPETITION_ID
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P42_COMPETITION_DESCRIPTION ==============
+  id: 10035100831353235
+  identification: 
+    name: P42_COMPETITION_DESCRIPTION
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P42_TEAM_ID ==============================
+  id: 10591120489617603
+  identification: 
+    name: P42_TEAM_ID
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 40
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Request (Memory Only)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+dynamic-actions: 
+- # ====== Dynamic Action: Nouveau =============================
+  id: 10593238963617624
+  identification: 
+    name: Nouveau
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: jQuery Selector
+    jquery-selector: '#P42_TEAM_ID'
+
+  actions: 
+  - # ====== Action: Régénérer ===================================
+    id: 10593395177617625
+    identification: 
+      action: Régénérer
+
+    affected-elements: 
+      selection-type: Region
+      region: TeamVictoriesBadges # 10592715378617619
+
+    execution: 
+      sequence: 10
+      event: Nouveau # 10593238963617624
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: Régénérer ===================================
+    id: 10593924667617631
+    identification: 
+      action: Régénérer
+
+    affected-elements: 
+      selection-type: Region
+      region: Nouveau # 10592054149617612
+
+    execution: 
+      sequence: 30
+      event: Nouveau # 10593238963617624
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+computations: 
+- # ====== Computation: P42_COMPETITION_DESCRIPTION ============
+  id: 10035276849353236
+  identification: 
+    item-name: P42_COMPETITION_DESCRIPTION
+
+  execution: 
+    sequence: 10
+    point: Before Regions
+
+  computation: 
+    type: SQL Query (return single value)
+    sql-query: 'select description from tp_competitions where competition_id = :P42_COMPETITION_ID'
+

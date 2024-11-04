@@ -1,0 +1,262 @@
+---
+- # ====== Static Application File: icons/app-icon-32.png ======
+  id: 8248336951413298
+  identification: 
+    file-name: icons/app-icon-32.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-144-rounded.p
+  id: 8248606435413298
+  identification: 
+    file-name: icons/app-icon-144-rounded.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-192.png =====
+  id: 8248992294413298
+  identification: 
+    file-name: icons/app-icon-192.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-256-rounded.p
+  id: 8249290150413298
+  identification: 
+    file-name: icons/app-icon-256-rounded.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: icons/app-icon-512.png =====
+  id: 8249599197413297
+  identification: 
+    file-name: icons/app-icon-512.png
+
+  attributes: 
+    mime-type: image/png
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: css/GLOBAL.css =============
+  id: 8433063256171658
+  identification: 
+    file-name: css/GLOBAL.css
+
+  attributes: 
+    mime-type: text/css
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/GLOBAL.js ===============
+  id: 8495149852613809
+  identification: 
+    file-name: js/GLOBAL.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_22.js ==============
+  id: 8615562283405083
+  identification: 
+    file-name: js/PAGE_22.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_22.min.js ==========
+  id: 8657050469795829
+  identification: 
+    file-name: js/PAGE_22.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/RoundButton.js ==========
+  id: 8665475648511848
+  identification: 
+    file-name: js/RoundButton.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/RoundButton.min.js ======
+  id: 8666425479509859
+  identification: 
+    file-name: js/RoundButton.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: css/RoundButton.css ========
+  id: 8667122967503735
+  identification: 
+    file-name: css/RoundButton.css
+
+  attributes: 
+    mime-type: text/css
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: css/RoundButton.min.css ====
+  id: 8668175714503282
+  identification: 
+    file-name: css/RoundButton.min.css
+
+  attributes: 
+    mime-type: text/css
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_30.js ==============
+  id: 9741119145581603
+  identification: 
+    file-name: js/PAGE_30.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_32.js ==============
+  id: 9959879864991105
+  identification: 
+    file-name: js/PAGE_32.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/Ajax.js =================
+  id: 10041410958749517
+  identification: 
+    file-name: js/Ajax.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/Ajax.min.js =============
+  id: 10146974484139628
+  identification: 
+    file-name: js/Ajax.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_32.min.js ==========
+  id: 10147798639138003
+  identification: 
+    file-name: js/PAGE_32.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_30.min.js ==========
+  id: 10151394131105669
+  identification: 
+    file-name: js/PAGE_30.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: css/QuickMenu.css ==========
+  id: 10385511228175518
+  identification: 
+    file-name: css/QuickMenu.css
+
+  attributes: 
+    mime-type: text/css
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/QuickMenu.js ============
+  id: 10391197616057599
+  identification: 
+    file-name: js/QuickMenu.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/RegionDisplaySelector.js 
+  id: 10566295738892206
+  identification: 
+    file-name: js/RegionDisplaySelector.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/RegionDisplaySelector.min
+  id: 10583022773709873
+  identification: 
+    file-name: js/RegionDisplaySelector.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: css/GLOBAL.min.css =========
+  id: 10849137482775558
+  identification: 
+    file-name: css/GLOBAL.min.css
+
+  attributes: 
+    mime-type: text/css
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/GLOBAL.min.js ===========
+  id: 10861545495395436
+  identification: 
+    file-name: js/GLOBAL.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/QuickMenu.min.js ========
+  id: 10899811891886746
+  identification: 
+    file-name: js/QuickMenu.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: css/QuickMenu.min.css ======
+  id: 10934696167278683
+  identification: 
+    file-name: css/QuickMenu.min.css
+
+  attributes: 
+    mime-type: text/css
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_40.js ==============
+  id: 10939641733575811
+  identification: 
+    file-name: js/PAGE_40.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+
+- # ====== Static Application File: js/PAGE_40.min.js ==========
+  id: 10939866174575812
+  identification: 
+    file-name: js/PAGE_40.min.js
+
+  attributes: 
+    mime-type: text/javascript
+    file-character-set: Unicode UTF-8
+

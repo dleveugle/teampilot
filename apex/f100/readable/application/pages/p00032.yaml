@@ -1,0 +1,869 @@
+---
+# ====== Page: Team composition ==============================
+id: 32
+identification: 
+  name: Team composition
+  alias: TEAM-COMPOSITION
+  title: "Composition d\\'équipe : &P32_TEAM_LABEL."
+  page-group: Team # 9326547559122955
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+dialog: 
+  chained: true
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - '#APP_FILES#js/PAGE_&APP_PAGE_ID.#MIN#.js'
+  - '#APP_FILES#js/Ajax#MIN#.js'
+
+css: 
+  inline: |
+    .t-ContentRow-body {
+            align-items:center;
+            flex-direction: row;
+        }
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: AvailablePlayers ============================
+  id: 9348393975913622
+  identification: 
+    name: AvailablePlayers
+    title: Joueurs disponibles
+    type: Contenu statique
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Region
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: TeamPlayers =================================
+  id: 9348491464913623
+  identification: 
+    name: TeamPlayers
+    title: Joueurs de l'équipe
+    type: Etat classique
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: |
+      select * from pck_pages_32.get_team_player_table(:P32_TEAM_ID);
+      
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+
+  appearance: 
+    template: Interactive Report
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Region
+
+  advanced: 
+    static-id: teamPlayers
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    layout: 
+      number-of-rows-type: Static Value
+      number-of-rows: 5
+
+    appearance: 
+      template-type: Theme
+      template: Content Row
+      template-options: 
+      - '#DEFAULT#'
+
+    pagination: 
+      type: Search Engine 1,2,3,4 (set based pagination)
+      display-position: Bottom - Right
+      partial-page-refresh: true
+
+    performance: 
+      lazy-loading: false
+
+    break-formatting: 
+      break-columns: No Break
+
+    advanced: 
+      strip-html: true
+      sort-nulls: Last
+
+    heading: 
+      type: Custom Headings
+
+    download: 
+      csv-export-enabled: false
+
+    printing: 
+      enabled: false
+
+  columns: 
+  - # ====== Column: ACTIONS =====================================
+    id: 9803225185763039
+    identification: 
+      column-name: ACTIONS
+      type: Plain Text
+
+    heading: 
+      heading: Actions
+      alignment: start
+
+    layout: 
+      sequence: 10
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+  - # ====== Column: DESCRIPTION =================================
+    id: 9803334814763040
+    identification: 
+      column-name: DESCRIPTION
+      type: Plain Text
+
+    heading: 
+      heading: Description
+      alignment: start
+
+    layout: 
+      sequence: 20
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+  - # ====== Column: ICON_CLASS ==================================
+    id: 9803471692763041
+    identification: 
+      column-name: ICON_CLASS
+      type: Plain Text
+
+    heading: 
+      heading: Icon Class
+      alignment: start
+
+    layout: 
+      sequence: 30
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+  - # ====== Column: ICON_HTML ===================================
+    id: 9803566790763042
+    identification: 
+      column-name: ICON_HTML
+      type: Plain Text
+
+    heading: 
+      heading: Icon Html
+      alignment: start
+
+    layout: 
+      sequence: 40
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+  - # ====== Column: ITEM_CLASSES ================================
+    id: 9803603509763043
+    identification: 
+      column-name: ITEM_CLASSES
+      type: Plain Text
+
+    heading: 
+      heading: Item Classes
+      alignment: start
+
+    layout: 
+      sequence: 50
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+  - # ====== Column: MISC ========================================
+    id: 9803733270763044
+    identification: 
+      column-name: MISC
+      type: Plain Text
+
+    heading: 
+      heading: Misc
+      alignment: start
+
+    layout: 
+      sequence: 60
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+  - # ====== Column: SELECTION ===================================
+    id: 9803838775763045
+    identification: 
+      column-name: SELECTION
+      type: Plain Text
+
+    heading: 
+      heading: Selection
+      alignment: start
+
+    layout: 
+      sequence: 70
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+  - # ====== Column: TITLE =======================================
+    id: 9803905252763046
+    identification: 
+      column-name: TITLE
+      type: Plain Text
+
+    heading: 
+      heading: Title
+      alignment: start
+
+    layout: 
+      sequence: 80
+      column-alignment: start
+
+    accessibility: 
+      value-identifies-row: false
+
+    sorting: 
+      sortable: true
+
+    export-/-printing: 
+      include-in-export-/-print: true
+
+    advanced: 
+      compute-sum: false
+
+    ui-defaults-reference: 
+      table-owner: Parsing Schema
+
+    security: 
+      escape-special-characters: false
+
+- # ====== Region: Footer ======================================
+  id: 9350260801913641
+  identification: 
+    name: Footer
+    type: Contenu statique
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_03
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--removeHeader js-removeLandmark
+    - t-Region--noBorder
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+page-items: 
+- # ====== Page Item: P32_AVAILABLEPLAYERS =====================
+  id: 9349283659913631
+  identification: 
+    name: P32_AVAILABLEPLAYERS
+    type: Liste SELECT
+
+  label: 
+    label: Joueurs disponibles
+    alignment: Left
+
+  settings: 
+    action-de-page-lors-de-la-sélection: Aucun
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 10
+    region: AvailablePlayers # 9348393975913622
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: false
+
+  list-of-values: 
+    type: SQL Query
+    sql-query: 'select * from pck_pages_32.get_player_available_for_team(:P32_TEAM_ID);'
+    display-extra-values: false
+    display-null-value: false
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P32_TEAMROLE =============================
+  id: 9349333218913632
+  identification: 
+    name: P32_TEAMROLE
+    type: Liste SELECT
+
+  label: 
+    label: Rôle dans l'équipe
+    alignment: Left
+
+  settings: 
+    action-de-page-lors-de-la-sélection: Aucun
+
+  multiple-values: 
+    type: No
+
+  layout: 
+    sequence: 20
+    region: AvailablePlayers # 9348393975913622
+    slot: BODY
+    alignment: Left
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    label-column-span: Page Template Default
+
+  appearance: 
+    template: Optional - Floating
+    template-options: 
+    - '#DEFAULT#'
+    height: 1
+
+  validation: 
+    value-required: true
+
+  list-of-values: 
+    type: Shared Component
+    list-of-values: LOV_TEAM_ROLES # 9790689027933741
+    display-extra-values: false
+    display-null-value: false
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    storage: Per Request (Memory Only)
+
+  quick-picks: 
+    show-quick-picks: false
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P32_TEAM_ID ==============================
+  id: 9350149782913640
+  identification: 
+    name: P32_TEAM_ID
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 40
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P32_TEAM_LABEL ===========================
+  id: 9804251313763049
+  identification: 
+    name: P32_TEAM_LABEL
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 50
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: AffectBtn ===================================
+  id: 9349428190913633
+  identification: 
+    button-name: AffectBtn
+    label: Affecter
+
+  layout: 
+    sequence: 30
+    region: AvailablePlayers # 9348393975913622
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    - t-Button--iconLeft
+    css-classes: 
+    - tp-refresh-team-players
+    icon: fa-user-arrow-down
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+  advanced: 
+    custom-attributes: 
+    - 'style="width:100%;margin-bottom:1rem"'
+
+- # ====== Button: CloseDialogBtn ==============================
+  id: 9350316165913642
+  identification: 
+    button-name: CloseDialogBtn
+    label: Fermer
+
+  layout: 
+    sequence: 10
+    region: Footer # 9350260801913641
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+dynamic-actions: 
+- # ====== Dynamic Action: ClickCloseButton ====================
+  id: 9350472334913643
+  identification: 
+    name: ClickCloseButton
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: CloseDialogBtn # 9350316165913642
+
+  actions: 
+  - # ====== Action: CloseDialog =================================
+    id: 9350575861913644
+    identification: 
+      name: CloseDialog
+      action: Fermer la boîte de dialogue
+
+    execution: 
+      sequence: 30
+      event: ClickCloseButton # 9350472334913643
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+  - # ====== Action: SaveTeamComposition =========================
+    id: 9351139958913650
+    identification: 
+      name: SaveTeamComposition
+      action: Exécuter le code côté serveur
+
+    settings: 
+      langue: PE.PROPERTY.SOURCE_SNIPPET_LANG.LOV.PLSQL.D
+      code-pl/sql: 'pck_pages_32.save_team_collection(:P32_TEAM_ID);'
+
+    execution: 
+      sequence: 20
+      event: ClickCloseButton # 9350472334913643
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+      stop-execution-on-error: true
+      wait-for-result: true
+
+- # ====== Dynamic Action: ClickAffectBtn ======================
+  id: 9350828719913647
+  identification: 
+    name: ClickAffectBtn
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: AffectBtn # 9349428190913633
+
+  actions: 
+  - # ====== Action: AddPlayerToTeam =============================
+    id: 9350908378913648
+    identification: 
+      name: AddPlayerToTeam
+      action: Exécuter le code JavaScript
+
+    settings: 
+      code: |
+        addPlayerToTeamCollection(
+            $v('P32_TEAM_ID'),
+            $v('P32_AVAILABLEPLAYERS'),
+            $v('P32_TEAMROLE'));
+
+    execution: 
+      sequence: 10
+      event: ClickAffectBtn # 9350828719913647
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+computations: 
+- # ====== Computation: P32_TEAM_LABEL =========================
+  id: 9804327336763050
+  identification: 
+    item-name: P32_TEAM_LABEL
+
+  execution: 
+    sequence: 10
+    point: Before Regions
+
+  computation: 
+    type: SQL Query (return single value)
+    sql-query: 'select label from tp_teams where team_id = :P32_TEAM_ID'
+
+processes: 
+- # ====== Process: Nouveau ====================================
+  id: 9801977538763026
+  identification: 
+    name: Nouveau
+    type: Exécuter le code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      pck_pages_32.create_team_collection(:P32_TEAM_ID);
+      pck_pages_32.load_team_collection(:P32_TEAM_ID);
+
+  execution: 
+    sequence: 10
+    point: Before Regions
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: AjaxRouter =================================
+  id: 10032229467353206
+  identification: 
+    name: AjaxRouter
+    type: Exécuter le code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      declare 
+          l_process varchar2(50) := upper(apex_application.g_x01);
+      begin
+          case 
+              when l_process = 'ADDPLAYERTOTEAMCOLLECTION' then 
+                  pck_pages_32.add_player_to_team_collection(
+                      p_team_id => apex_application.g_x02,
+                      p_player_id => apex_application.g_x03,
+                      p_role_code => apex_application.g_x04
+                  );
+              when l_process = 'REMOVEPLAYERFROMTEAMCOLLECTION' then
+                  pck_pages_32.remove_player_from_team_collection(
+                      p_team_id => apex_application.g_x02,
+                      p_seq_id => apex_application.g_x03
+                  );
+          end case;
+      end;
+
+  execution: 
+    sequence: 30
+    point: Ajax Callback
+    run-process: Once Per Page Visit (default)
+

@@ -1,0 +1,242 @@
+prompt --application/pages/page_00042
+begin
+--   Manifest
+--     PAGE: 00042
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.05.31'
+,p_release=>'24.1.1'
+,p_default_workspace_id=>7950235266428880
+,p_default_application_id=>100
+,p_default_id_offset=>0
+,p_default_owner=>'TP'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>42
+,p_name=>'Competition details'
+,p_alias=>'COMPETITION-DETAILS'
+,p_step_title=>'Competition details'
+,p_autocomplete_on_off=>'OFF'
+,p_group_id=>wwv_flow_imp.id(9724339234903066)
+,p_javascript_file_urls=>'#APP_FILES#js/RegionDisplaySelector#MIN#.js'
+,p_page_template_options=>'#DEFAULT#'
+,p_protection_level=>'C'
+,p_page_component_map=>'25'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(10035012062353234)
+,p_plug_name=>'&P42_COMPETITION_DESCRIPTION.'
+,p_icon_css_classes=>'fa-paste'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(8027542339413492)
+,p_plug_display_sequence=>20
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_location=>null
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(10035310777353237)
+,p_plug_name=>'Competition region display selector'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(7994238345413505)
+,p_plug_display_sequence=>40
+,p_plug_display_point=>'REGION_POSITION_01'
+,p_location=>null
+,p_function_body_language=>'PLSQL'
+,p_plug_source=>'return pck_pages_42.get_competition_region_display_selector(:P0_USER_ID, :P0_CLUB_ID, :P0_SEASON_ID, :P42_COMPETITION_ID);'
+,p_plug_source_type=>'NATIVE_DYNAMIC_CONTENT'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(10591773279617609)
+,p_plug_name=>'Nouveau'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(7995660469413505)
+,p_plug_display_sequence=>50
+,p_location=>null
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'HTML')).to_clob
+);
+wwv_flow_imp_page.create_report_region(
+ p_id=>wwv_flow_imp.id(10592054149617612)
+,p_name=>'Nouveau'
+,p_parent_plug_id=>wwv_flow_imp.id(10591773279617609)
+,p_template=>wwv_flow_imp.id(8022937752413494)
+,p_display_sequence=>30
+,p_region_template_options=>'#DEFAULT#:t-ContentBlock--h1'
+,p_component_template_options=>'#DEFAULT#:t-ContentRow--styleCompact'
+,p_source_type=>'NATIVE_SQL_REPORT'
+,p_query_type=>'SQL'
+,p_source=>'select * from tp_meetings where competition_id = :P42_COMPETITION_ID and team_id = :P42_TEAM_ID'
+,p_ajax_enabled=>'Y'
+,p_ajax_items_to_submit=>'P42_COMPETITION_ID,P42_TEAM_ID'
+,p_lazy_loading=>false
+,p_query_row_template=>wwv_flow_imp.id(8091650209413467)
+,p_query_num_rows=>15
+,p_query_options=>'DERIVED_REPORT_COLUMNS'
+,p_query_num_rows_type=>'NEXT_PREVIOUS_LINKS'
+,p_pagination_display_position=>'BOTTOM_RIGHT'
+,p_csv_output=>'N'
+,p_prn_output=>'N'
+,p_sort_null=>'L'
+,p_plug_query_strip_html=>'N'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(10592182133617613)
+,p_query_column_id=>1
+,p_column_alias=>'MEETING_ID'
+,p_column_display_sequence=>10
+,p_column_heading=>'Meeting Id'
+,p_use_as_row_header=>'N'
+,p_column_alignment=>'RIGHT'
+,p_heading_alignment=>'RIGHT'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(10592270299617614)
+,p_query_column_id=>2
+,p_column_alias=>'MEETING_DATE'
+,p_column_display_sequence=>20
+,p_column_heading=>'Meeting Date'
+,p_use_as_row_header=>'N'
+,p_heading_alignment=>'LEFT'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(10592379470617615)
+,p_query_column_id=>3
+,p_column_alias=>'OPPONENT'
+,p_column_display_sequence=>30
+,p_column_heading=>'Opponent'
+,p_use_as_row_header=>'N'
+,p_heading_alignment=>'LEFT'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(10592435457617616)
+,p_query_column_id=>4
+,p_column_alias=>'TEAM_ID'
+,p_column_display_sequence=>40
+,p_column_heading=>'Team Id'
+,p_use_as_row_header=>'N'
+,p_column_alignment=>'RIGHT'
+,p_heading_alignment=>'RIGHT'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(10592534644617617)
+,p_query_column_id=>5
+,p_column_alias=>'COMPETITION_ID'
+,p_column_display_sequence=>50
+,p_column_heading=>'Competition Id'
+,p_use_as_row_header=>'N'
+,p_column_alignment=>'RIGHT'
+,p_heading_alignment=>'RIGHT'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_report_columns(
+ p_id=>wwv_flow_imp.id(10592634826617618)
+,p_query_column_id=>6
+,p_column_alias=>'EXTERNAL'
+,p_column_display_sequence=>60
+,p_column_heading=>'External'
+,p_use_as_row_header=>'N'
+,p_column_alignment=>'RIGHT'
+,p_heading_alignment=>'RIGHT'
+,p_disable_sort_column=>'N'
+,p_derived_column=>'N'
+,p_include_in_export=>'Y'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(10592715378617619)
+,p_plug_name=>'TeamVictoriesBadges'
+,p_region_name=>'tp-teamVictoryBadges'
+,p_parent_plug_id=>wwv_flow_imp.id(10591773279617609)
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(7994238345413505)
+,p_plug_display_sequence=>10
+,p_location=>null
+,p_function_body_language=>'PLSQL'
+,p_plug_source=>'return pck_pages_42.get_team_victory_badges_table(:P0_USER_ID, :P42_COMPETITION_ID, :P42_TEAM_ID);'
+,p_plug_source_type=>'NATIVE_DYNAMIC_CONTENT'
+,p_ajax_items_to_submit=>'P42_TEAM_ID,P42_COMPETITION_ID'
+,p_landmark_type=>'region'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(10034965116353233)
+,p_name=>'P42_COMPETITION_ID'
+,p_item_sequence=>20
+,p_display_as=>'NATIVE_HIDDEN'
+,p_warn_on_unsaved_changes=>'I'
+,p_is_persistent=>'N'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(10035100831353235)
+,p_name=>'P42_COMPETITION_DESCRIPTION'
+,p_item_sequence=>10
+,p_display_as=>'NATIVE_HIDDEN'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(10591120489617603)
+,p_name=>'P42_TEAM_ID'
+,p_item_sequence=>40
+,p_display_as=>'NATIVE_HIDDEN'
+,p_warn_on_unsaved_changes=>'I'
+,p_is_persistent=>'N'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_computation(
+ p_id=>wwv_flow_imp.id(10035276849353236)
+,p_computation_sequence=>10
+,p_computation_item=>'P42_COMPETITION_DESCRIPTION'
+,p_computation_point=>'BEFORE_BOX_BODY'
+,p_computation_type=>'QUERY'
+,p_computation=>'select description from tp_competitions where competition_id = :P42_COMPETITION_ID'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(10593238963617624)
+,p_name=>'Nouveau'
+,p_event_sequence=>10
+,p_triggering_element_type=>'JQUERY_SELECTOR'
+,p_triggering_element=>'#P42_TEAM_ID'
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'change'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(10593395177617625)
+,p_event_id=>wwv_flow_imp.id(10593238963617624)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(10592715378617619)
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(10593924667617631)
+,p_event_id=>wwv_flow_imp.id(10593238963617624)
+,p_event_result=>'TRUE'
+,p_action_sequence=>30
+,p_execute_on_page_init=>'N'
+,p_action=>'NATIVE_REFRESH'
+,p_affected_elements_type=>'REGION'
+,p_affected_region_id=>wwv_flow_imp.id(10592054149617612)
+);
+wwv_flow_imp.component_end;
+end;
+/

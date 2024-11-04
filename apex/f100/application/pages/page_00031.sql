@@ -1,0 +1,330 @@
+prompt --application/pages/page_00031
+begin
+--   Manifest
+--     PAGE: 00031
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.05.31'
+,p_release=>'24.1.1'
+,p_default_workspace_id=>7950235266428880
+,p_default_application_id=>100
+,p_default_id_offset=>0
+,p_default_owner=>'TP'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>31
+,p_name=>'Team form'
+,p_alias=>'TEAM-FORM'
+,p_page_mode=>'MODAL'
+,p_step_title=>unistr('Donn\00E9es \00E9quipe')
+,p_autocomplete_on_off=>'OFF'
+,p_group_id=>wwv_flow_imp.id(9326547559122955)
+,p_step_template=>wwv_flow_imp.id(7958315663413520)
+,p_page_template_options=>'#DEFAULT#:js-dialog-class-t-Drawer--pullOutEnd'
+,p_protection_level=>'C'
+,p_page_component_map=>'17'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8669428593491435)
+,p_plug_name=>'Team form'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(7994238345413505)
+,p_plug_display_sequence=>10
+,p_query_type=>'TABLE'
+,p_query_table=>'TP_TEAMS'
+,p_include_rowid_column=>false
+,p_is_editable=>true
+,p_edit_operations=>'i:u:d'
+,p_lost_update_check_type=>'VALUES'
+,p_plug_source_type=>'NATIVE_FORM'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8673842554491424)
+,p_plug_name=>'Boutons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(7997045854413504)
+,p_plug_display_sequence=>20
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'TEXT',
+  'show_line_breaks', 'Y')).to_clob
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8674267776491424)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(8673842554491424)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_image_alt=>'Annuler'
+,p_button_position=>'CLOSE'
+,p_button_alignment=>'RIGHT'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8675639610491422)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(8673842554491424)
+,p_button_name=>'DELETE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_image_alt=>'Supprimer'
+,p_button_position=>'DELETE'
+,p_button_alignment=>'RIGHT'
+,p_button_execute_validations=>'N'
+,p_confirm_message=>'&APP_TEXT$DELETE_MSG!RAW.'
+,p_confirm_style=>'danger'
+,p_button_condition=>'P31_TEAM_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'DELETE'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8676024169491422)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_imp.id(8673842554491424)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Appliquer les modifications'
+,p_button_position=>'NEXT'
+,p_button_alignment=>'RIGHT'
+,p_button_condition=>'P31_TEAM_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'UPDATE'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8676436391491422)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_imp.id(8673842554491424)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>unistr('Cr\00E9er')
+,p_button_position=>'NEXT'
+,p_button_alignment=>'RIGHT'
+,p_button_condition=>'P31_TEAM_ID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_database_action=>'INSERT'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8606494479824625)
+,p_name=>'P31_ORDERNUM'
+,p_source_data_type=>'NUMBER'
+,p_is_required=>true
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_item_source_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_item_default=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'declare',
+'    l_ret number;',
+'begin',
+'    select      max(tt.ordernum) + 1',
+'    into        l_ret',
+'    from        tp_teams tt',
+'    where       tt.season_id = :P0_SEASON_ID',
+'    and         tt.club_id = :P0_CLUB_ID;',
+'    return l_ret;',
+'exception',
+'    when no_data_found then',
+'       return 1;',
+'end;'))
+,p_item_default_type=>'FUNCTION_BODY'
+,p_item_default_language=>'PLSQL'
+,p_prompt=>unistr('N\00B0 ordre')
+,p_source=>'ORDERNUM'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_NUMBER_FIELD'
+,p_cSize=>30
+,p_field_template=>wwv_flow_imp.id(8131957991413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_attribute_03=>'left'
+,p_attribute_04=>'decimal'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8669763137491435)
+,p_name=>'P31_TEAM_ID'
+,p_source_data_type=>'NUMBER'
+,p_is_primary_key=>true
+,p_is_query_only=>true
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_item_source_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_source=>'TEAM_ID'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_is_persistent=>'N'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8670115235491431)
+,p_name=>'P31_LABEL'
+,p_source_data_type=>'VARCHAR2'
+,p_is_required=>true
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_item_source_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_prompt=>'Label'
+,p_source=>'LABEL'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>20
+,p_field_template=>wwv_flow_imp.id(8133202851413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'NONE'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8670577583491429)
+,p_name=>'P31_DESCRIPTION'
+,p_source_data_type=>'VARCHAR2'
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_item_source_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_prompt=>'Description'
+,p_source=>'DESCRIPTION'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>200
+,p_field_template=>wwv_flow_imp.id(8131957991413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'NONE'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8670912886491429)
+,p_name=>'P31_CLUB_ID'
+,p_source_data_type=>'NUMBER'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_item_source_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_prompt=>'Club'
+,p_source=>'CLUB_ID'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'TP_CLUBS.LABEL'
+,p_cHeight=>1
+,p_tag_attributes=>'disabled="disabled"'
+,p_begin_on_new_line=>'N'
+,p_field_template=>wwv_flow_imp.id(8131957991413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8671610426491426)
+,p_name=>'P31_SEASON_ID'
+,p_source_data_type=>'NUMBER'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_item_source_plug_id=>wwv_flow_imp.id(8669428593491435)
+,p_prompt=>'Saison'
+,p_source=>'SEASON_ID'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'TP_SEASONS.LABEL'
+,p_cHeight=>1
+,p_tag_attributes=>'disabled="disabled"'
+,p_field_template=>wwv_flow_imp.id(8131957991413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(8674339446491424)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(8674267776491424)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(8675136804491423)
+,p_event_id=>wwv_flow_imp.id(8674339446491424)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_name=>'CancelDialog'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8606008278824621)
+,p_process_sequence=>10
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_EXECUTION_CHAIN'
+,p_process_name=>'ExecutionChain'
+,p_attribute_01=>'N'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_internal_uid=>8606008278824621
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8677619953491420)
+,p_process_sequence=>20
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'CloseDialog'
+,p_attribute_02=>'Y'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
+,p_internal_uid=>8677619953491420
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8676875109491421)
+,p_process_sequence=>10
+,p_process_point=>'BEFORE_HEADER'
+,p_region_id=>wwv_flow_imp.id(8669428593491435)
+,p_process_type=>'NATIVE_FORM_INIT'
+,p_process_name=>'Initialiser le panneau Team form'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_internal_uid=>8676875109491421
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8677234509491421)
+,p_process_sequence=>70
+,p_region_id=>wwv_flow_imp.id(8669428593491435)
+,p_parent_process_id=>wwv_flow_imp.id(8606008278824621)
+,p_process_type=>'NATIVE_FORM_DML'
+,p_process_name=>'ProcessTeamForm'
+,p_attribute_01=>'REGION_SOURCE'
+,p_attribute_05=>'Y'
+,p_attribute_06=>'Y'
+,p_attribute_08=>'Y'
+,p_internal_uid=>8677234509491421
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8606156682824622)
+,p_process_sequence=>80
+,p_parent_process_id=>wwv_flow_imp.id(8606008278824621)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'UpdateClubAndSeason'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'update tp_teams',
+'set club_id = :P0_CLUB_ID,',
+'season_id = :P0_SEASON_ID',
+'where team_id = :P31_TEAM_ID;'))
+,p_process_clob_language=>'PLSQL'
+,p_internal_uid=>8606156682824622
+);
+wwv_flow_imp.component_end;
+end;
+/

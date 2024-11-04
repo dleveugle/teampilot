@@ -1,0 +1,43 @@
+---
+- # ====== Role: Administrator =================================
+  id: 8251418688413295
+  identification: 
+    name: Administrator
+
+  advanced: 
+    static-id: ADMINISTRATOR
+
+  description: 
+    description: Role assigned to application administrators.
+
+  subscription: 
+    version-number: 39327579190558
+
+- # ====== Role: Contributor ===================================
+  id: 8251657568413294
+  identification: 
+    name: Contributor
+
+  advanced: 
+    static-id: CONTRIBUTOR
+
+  description: 
+    description: Role assigned to application contributors.
+
+  subscription: 
+    version-number: 39327579190560
+
+- # ====== Role: Reader ========================================
+  id: 8251721145413294
+  identification: 
+    name: Reader
+
+  advanced: 
+    static-id: READER
+
+  description: 
+    description: Role assigned to application readers.
+
+  subscription: 
+    version-number: 39327579190560
+

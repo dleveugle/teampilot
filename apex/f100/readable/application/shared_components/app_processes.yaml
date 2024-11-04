@@ -1,0 +1,28 @@
+---
+- # ====== Application Process: AJAXGETURL =====================
+  id: 8494889022618711
+  identification: 
+    name: AJAXGETURL
+    type: NATIVE_PLSQL
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      htp.p(pck_pages.get_url(
+          p_page => apex_application.g_x01,
+          p_items => apex_application.g_x02,
+          p_values => apex_application.g_x03,
+          p_triggering_element => apex_application.g_x04
+      ));
+
+  execution: 
+    sequence: 1
+    point: Ajax Callback
+
+  security: 
+    authorization-scheme: Must Not Be Public User
+
+  subscription: 
+    version-number: 39327690086237
+

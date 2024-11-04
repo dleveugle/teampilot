@@ -1,0 +1,242 @@
+---
+# ====== Page: Players filter ================================
+id: 22
+identification: 
+  name: Players filter
+  alias: PLAYERS-FILTER
+  title: Filtrer
+  page-group: Players # 8427287182258872
+
+appearance: 
+  page-mode: Modal Dialog
+  dialog-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+dialog: 
+  chained: true
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - '#APP_FILES#js/PAGE_&APP_PAGE_ID.#MIN#.js'
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: Nouveau =====================================
+  id: 8367852116661745
+  identification: 
+    name: Nouveau
+    title: 'Dont le nom commence par :'
+    type: Contenu dynamique
+
+  source: 
+    language: PL/SQL
+    pl/sql-function-body-returning-a-clob: 'return pck_pages_22.get_player_letter_filter_badges(:P0_USER_ID, :P0_SEASON_ID, :P0_CLUB_ID);'
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--showIcon
+    - t-Region--noBorder
+    - t-Region--scrollBody
+    icon: fa-user fa-lg
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: letter_filter
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+
+page-items: 
+- # ====== Page Item: P22_LETTER ===============================
+  id: 8604261924824603
+  identification: 
+    name: P22_LETTER
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: BODY
+
+  advanced: 
+    warn-on-unsaved-changes: Ignore
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: FilterButton ================================
+  id: 8604815527824609
+  identification: 
+    button-name: FilterButton
+    label: Filtrer
+
+  layout: 
+    sequence: 10
+    region: Nouveau # 8367852116661745
+    slot: CLOSE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: CancelFilterButton ==========================
+  id: 8605535006824616
+  identification: 
+    button-name: CancelFilterButton
+    label: Reinitialiser le filtre
+
+  layout: 
+    sequence: 10
+    region: Nouveau # 8367852116661745
+    slot: CHANGE
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    button-template: Text
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: FilterButtonClick ===================
+  id: 8604964663824610
+  identification: 
+    name: FilterButtonClick
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: FilterButton # 8604815527824609
+
+  actions: 
+  - # ====== Action: CloseDialog =================================
+    id: 8605081139824611
+    identification: 
+      name: CloseDialog
+      action: Fermer la boîte de dialogue
+
+    settings: 
+      eléments-à-renvoyer: 
+      - P22_LETTER
+
+    execution: 
+      sequence: 10
+      event: FilterButtonClick # 8604964663824610
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: OnPageLoad ==========================
+  id: 8605887480824619
+  identification: 
+    name: OnPageLoad
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+
+  when: 
+    event: Page Load
+
+  actions: 
+  - # ====== Action: InitializeFilter ============================
+    id: 8605921672824620
+    identification: 
+      name: InitializeFilter
+      action: Exécuter le code JavaScript
+
+    settings: 
+      code: initLetter($v('P22_LETTER'));
+
+    execution: 
+      sequence: 10
+      event: OnPageLoad # 8605887480824619
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

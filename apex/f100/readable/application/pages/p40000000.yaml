@@ -1,0 +1,691 @@
+---
+# ====== Page: Competitions ==================================
+id: 40000000
+identification: 
+  name: Competitions
+  alias: COMPETITIONS1
+  title: Competitions
+  page-group: Competition # 9724339234903066
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - '#APP_FILES#js/QuickMenu#MIN#.js'
+
+css: 
+  file-urls: 
+  - '#APP_FILES#css/QuickMenu#MIN#.css'
+  - null
+  - '#APP_FILES#css/GLOBAL#MIN#.css'
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: CompetitionAccordions =======================
+  id: 20105367101329409
+  identification: 
+    name: CompetitionAccordions
+    type: Contenu dynamique
+
+  source: 
+    language: PL/SQL
+    pl/sql-function-body-returning-a-clob: 'return pck_pages_40.get_competition_accordion_table(:P0_USER_ID, :P0_CLUB_ID, :P0_SEASON_ID);'
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+
+- # ====== Region: BlurredMenu =================================
+  id: 20790441291769005
+  identification: 
+    name: BlurredMenu
+    type: Contenu statique
+
+  layout: 
+    sequence: 10
+    parent-region: QuickMenu # 20790569050769006
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - tp-blurredDialog
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: tpQuickMenuBlurredDiv
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: QuickMenu ===================================
+  id: 20790569050769006
+  identification: 
+    name: QuickMenu
+    type: Contenu statique
+
+  layout: 
+    sequence: 30
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - tp-quickMenu
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: tpQuickMenu
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: QuickMenuSeparator ==========================
+  id: 20791031090769011
+  identification: 
+    name: QuickMenuSeparator
+    type: Contenu statique
+
+  source: 
+    html-code: <span id="tpQuickMenuSeparator" class="tp-quickMenuSeparator"></span>
+
+  layout: 
+    sequence: 20
+    parent-region: QuickMenuButtons # 20792158588769022
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: None
+    render-components: Above Content
+
+  advanced: 
+    static-id: tpQuickMenuSeparator
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: MenuItems ===================================
+  id: 20791219965769012
+  identification: 
+    name: MenuItems
+    type: Contenu statique
+
+  layout: 
+    sequence: 10
+    parent-region: BlurredMenu # 20790441291769005
+    slot: SUB_REGIONS
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - tp-blurredMenu
+    - tp-quickMenuButtons
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: tpQuickMenuBlurredMenuItems
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: QuickMenuButtons ============================
+  id: 20792158588769022
+  identification: 
+    name: QuickMenuButtons
+    type: Contenu statique
+
+  layout: 
+    sequence: 20
+    parent-region: QuickMenu # 20790569050769006
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - tp-quickMenuButtons
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    static-id: tpQuickMenuButtons
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: ViewClosedCompetitionsMenuItem ==============
+  id: 20792463226769025
+  identification: 
+    name: ViewClosedCompetitionsMenuItem
+    type: Contenu statique
+
+  source: 
+    html-code: |
+      Voir les compétitions fermées
+      
+      
+
+  layout: 
+    sequence: 10
+    parent-region: MenuItems # 20791219965769012
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - tp-blurredMenuItem
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: Competition calendar ========================
+  id: 21351658558033425
+  identification: 
+    name: Competition calendar
+    type: Calendrier
+
+  source: 
+    location: Local Database
+    type: Table / View
+    table-owner: Parsing Schema
+    table-name: TP_EVENTS
+    include-rowid-column: false
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: false
+    column: Automatic
+    new-column: false
+    column-span: Automatic
+
+  appearance: 
+    template: Standard
+    template-options: 
+    - '#DEFAULT#'
+    - t-Region--scrollBody
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  security: 
+    escape-special-characters: true
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      colonne-d'affichage: OPPONENT
+      colonne-de-date-de-début: DATE
+      tri-des-événements: Automatique
+      afficher-l'heure: false
+      evénements-sur-plusieurs-lignes: true
+      afficher-l'info-bulle: true
+      vues-de-calendrier-supplémentaires: 'list:navigation'
+      nombre-maximal-d'événements/jour: 10
+      afficher-le-week-end: true
+
+    performance: 
+      lazy-loading: false
+
+- # ====== Region: Competitions ================================
+  id: 21351886208033427
+  identification: 
+    name: Competitions
+    title: Compétitions
+    type: Contenu statique
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Hero
+    template-options: 
+    - '#DEFAULT#'
+    icon: fa-paste
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: Competition region display selector =========
+  id: 31547922880468578
+  identification: 
+    name: Competition region display selector
+    type: Contenu dynamique
+
+  source: 
+    language: PL/SQL
+    pl/sql-function-body-returning-a-clob: 'return pck_pages_40.get_competition_region_display_selector(:P0_USER_ID, :P0_CLUB_ID, :P0_SEASON_ID);'
+
+  layout: 
+    sequence: 40
+    parent-region: No Parent
+    slot: REGION_POSITION_01
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  server-cache: 
+    caching: Disabled
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+
+buttons: 
+- # ====== Button: Nouveau_1 ===================================
+  id: 10760685762415780
+  identification: 
+    button-name: Nouveau_1
+    label: Nouveau 1
+
+  layout: 
+    sequence: 40
+    region: MenuItems # 20791219965769012
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    - t-Button--iconRight
+    - t-Button--gapLeft
+    - t-Button--gapRight
+    - t-Button--gapTop
+    - t-Button--gapBottom
+    css-classes: 
+    - tp-blurredMenuItemButton
+    icon: fa-assistive-listening-systems fa-2x
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: Nouveau =====================================
+  id: 10761024108415780
+  identification: 
+    button-name: Nouveau
+    label: Nouveau
+
+  layout: 
+    sequence: 50
+    region: MenuItems # 20791219965769012
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - tp-blurredMenuItemButton
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: Nouveau_2 ===================================
+  id: 10761474441415779
+  identification: 
+    button-name: Nouveau_2
+    label: Nouveau 2
+
+  layout: 
+    sequence: 60
+    region: MenuItems # 20791219965769012
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - tp-blurredMenuItemButton
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: ViewClosedCompetitions ======================
+  id: 10762295338415779
+  identification: 
+    button-name: ViewClosedCompetitions
+    label: Voir les compétitions terminées
+
+  layout: 
+    sequence: 10
+    region: ViewClosedCompetitionsMenuItem # 20792463226769025
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    css-classes: 
+    - tp-blurredMenuItemButton
+    icon: fa-eye
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: AddNewCompetition ===========================
+  id: 10763083169415778
+  identification: 
+    button-name: AddNewCompetition
+    label: Nouvelle compétition
+
+  layout: 
+    sequence: 10
+    region: QuickMenuButtons # 20792158588769022
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Text with Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    - t-Button--iconLeft
+    css-classes: 
+    - u-hot
+    - tp-quickMenuLeftIcon
+    icon: fa-plus
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:41:&SESSION.::&DEBUG.::P41_CLUB_ID,P41_SEASON_ID:&P0_CLUB_ID.,&P0_SEASON_ID.'
+      page: 41 # Competition form
+      values: 
+        p41_club_id: '&P0_CLUB_ID.'
+        p41_season_id: '&P0_SEASON_ID.'
+
+    warn-on-unsaved-changes: Do Not Check
+
+  advanced: 
+    static-id: tpQuickMenuLeftButton
+
+- # ====== Button: QuickRightButton ============================
+  id: 10763428647415777
+  identification: 
+    button-name: QuickRightButton
+    label: Quickrightbutton
+
+  layout: 
+    sequence: 30
+    region: QuickMenuButtons # 20792158588769022
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    css-classes: 
+    - u-hot
+    - tp-quickMenuRightIcon
+    icon: fa-chevron-up
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+  advanced: 
+    static-id: tpQuickMenuRightButton
+

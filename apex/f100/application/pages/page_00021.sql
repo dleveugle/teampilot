@@ -1,0 +1,316 @@
+prompt --application/pages/page_00021
+begin
+--   Manifest
+--     PAGE: 00021
+--   Manifest End
+wwv_flow_imp.component_begin (
+ p_version_yyyy_mm_dd=>'2024.05.31'
+,p_release=>'24.1.1'
+,p_default_workspace_id=>7950235266428880
+,p_default_application_id=>100
+,p_default_id_offset=>0
+,p_default_owner=>'TP'
+);
+wwv_flow_imp_page.create_page(
+ p_id=>21
+,p_name=>'Player form'
+,p_alias=>'PLAYER-FORM'
+,p_page_mode=>'MODAL'
+,p_step_title=>'Formulaire joueur'
+,p_first_item=>'AUTO_FIRST_ITEM'
+,p_autocomplete_on_off=>'OFF'
+,p_group_id=>wwv_flow_imp.id(8427287182258872)
+,p_step_template=>wwv_flow_imp.id(7958315663413520)
+,p_page_template_options=>'#DEFAULT#:js-dialog-class-t-Drawer--pullOutEnd'
+,p_protection_level=>'C'
+,p_page_component_map=>'17'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8480860314932729)
+,p_plug_name=>'Player form'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(7994238345413505)
+,p_plug_display_sequence=>10
+,p_query_type=>'TABLE'
+,p_query_table=>'TP_PLAYERS'
+,p_include_rowid_column=>false
+,p_is_editable=>true
+,p_edit_operations=>'i:u:d'
+,p_lost_update_check_type=>'VALUES'
+,p_plug_source_type=>'NATIVE_FORM'
+,p_ajax_items_to_submit=>'P21_SEASON,P21_CLUB'
+);
+wwv_flow_imp_page.create_page_plug(
+ p_id=>wwv_flow_imp.id(8483959311932720)
+,p_plug_name=>'Boutons'
+,p_region_template_options=>'#DEFAULT#'
+,p_plug_template=>wwv_flow_imp.id(7997045854413504)
+,p_plug_display_sequence=>20
+,p_plug_display_point=>'REGION_POSITION_03'
+,p_attributes=>wwv_flow_t_plugin_attributes(wwv_flow_t_varchar2(
+  'expand_shortcuts', 'N',
+  'output_as', 'TEXT',
+  'show_line_breaks', 'Y')).to_clob
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8484374297932720)
+,p_button_sequence=>10
+,p_button_plug_id=>wwv_flow_imp.id(8483959311932720)
+,p_button_name=>'CANCEL'
+,p_button_action=>'DEFINED_BY_DA'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_image_alt=>'Annuler'
+,p_button_position=>'CLOSE'
+,p_button_alignment=>'RIGHT'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8485729638932718)
+,p_button_sequence=>20
+,p_button_plug_id=>wwv_flow_imp.id(8483959311932720)
+,p_button_name=>'DELETE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_image_alt=>'Supprimer'
+,p_button_position=>'DELETE'
+,p_button_alignment=>'RIGHT'
+,p_button_execute_validations=>'N'
+,p_confirm_message=>'&APP_TEXT$DELETE_MSG!RAW.'
+,p_confirm_style=>'danger'
+,p_button_condition=>'P21_PLAYER_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'DELETE'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8486157806932718)
+,p_button_sequence=>30
+,p_button_plug_id=>wwv_flow_imp.id(8483959311932720)
+,p_button_name=>'SAVE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>'Appliquer les modifications'
+,p_button_position=>'NEXT'
+,p_button_alignment=>'RIGHT'
+,p_button_condition=>'P21_PLAYER_ID'
+,p_button_condition_type=>'ITEM_IS_NOT_NULL'
+,p_database_action=>'UPDATE'
+);
+wwv_flow_imp_page.create_page_button(
+ p_id=>wwv_flow_imp.id(8486527571932718)
+,p_button_sequence=>40
+,p_button_plug_id=>wwv_flow_imp.id(8483959311932720)
+,p_button_name=>'CREATE'
+,p_button_action=>'SUBMIT'
+,p_button_template_options=>'#DEFAULT#'
+,p_button_template_id=>wwv_flow_imp.id(8134460186413448)
+,p_button_is_hot=>'Y'
+,p_button_image_alt=>unistr('Cr\00E9er')
+,p_button_position=>'NEXT'
+,p_button_alignment=>'RIGHT'
+,p_button_condition=>'P21_PLAYER_ID'
+,p_button_condition_type=>'ITEM_IS_NULL'
+,p_database_action=>'INSERT'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8481108452932728)
+,p_name=>'P21_PLAYER_ID'
+,p_source_data_type=>'NUMBER'
+,p_is_primary_key=>true
+,p_is_query_only=>true
+,p_item_sequence=>30
+,p_item_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_item_source_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_source=>'PLAYER_ID'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_HIDDEN'
+,p_is_persistent=>'N'
+,p_protection_level=>'S'
+,p_attribute_01=>'Y'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8481529886932723)
+,p_name=>'P21_FIRSTNAME'
+,p_source_data_type=>'VARCHAR2'
+,p_is_required=>true
+,p_item_sequence=>40
+,p_item_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_item_source_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_prompt=>unistr('Pr\00E9nom')
+,p_source=>'FIRSTNAME'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>200
+,p_field_template=>wwv_flow_imp.id(8133202851413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'NONE'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8481937840932722)
+,p_name=>'P21_LASTNAME'
+,p_source_data_type=>'VARCHAR2'
+,p_is_required=>true
+,p_item_sequence=>50
+,p_item_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_item_source_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_prompt=>'Nom'
+,p_source=>'LASTNAME'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>200
+,p_begin_on_new_line=>'N'
+,p_field_template=>wwv_flow_imp.id(8133202851413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'NONE'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8482305649932722)
+,p_name=>'P21_LICENCE'
+,p_source_data_type=>'VARCHAR2'
+,p_item_sequence=>60
+,p_item_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_item_source_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_prompt=>'Licence'
+,p_source=>'LICENCE'
+,p_source_type=>'REGION_SOURCE_COLUMN'
+,p_display_as=>'NATIVE_TEXT_FIELD'
+,p_cSize=>32
+,p_cMaxlength=>20
+,p_field_template=>wwv_flow_imp.id(8131957991413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_is_persistent=>'N'
+,p_attribute_01=>'N'
+,p_attribute_02=>'N'
+,p_attribute_04=>'TEXT'
+,p_attribute_05=>'NONE'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8520653271844947)
+,p_name=>'P21_SEASON'
+,p_item_sequence=>10
+,p_item_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_item_default=>'P0_SEASON_ID'
+,p_item_default_type=>'ITEM'
+,p_prompt=>'Saison'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'LOV_SEASONS'
+,p_lov=>'select label, season_id from tp_seasons order by label'
+,p_lov_display_null=>'YES'
+,p_cHeight=>1
+,p_tag_attributes=>'disabled="disabled"'
+,p_field_template=>wwv_flow_imp.id(8133202851413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+);
+wwv_flow_imp_page.create_page_item(
+ p_id=>wwv_flow_imp.id(8520781026844948)
+,p_name=>'P21_CLUB'
+,p_item_sequence=>20
+,p_item_plug_id=>wwv_flow_imp.id(8480860314932729)
+,p_item_default=>'P0_CLUB_ID'
+,p_item_default_type=>'ITEM'
+,p_prompt=>'Club'
+,p_display_as=>'NATIVE_SELECT_LIST'
+,p_named_lov=>'LOV_CLUBS'
+,p_lov=>'select label, club_id from tp_clubs order by label'
+,p_lov_display_null=>'YES'
+,p_cHeight=>1
+,p_tag_attributes=>'disabled="disabled"'
+,p_begin_on_new_line=>'N'
+,p_field_template=>wwv_flow_imp.id(8133202851413449)
+,p_item_template_options=>'#DEFAULT#'
+,p_lov_display_extra=>'NO'
+,p_attribute_01=>'NONE'
+);
+wwv_flow_imp_page.create_page_da_event(
+ p_id=>wwv_flow_imp.id(8484424143932720)
+,p_name=>'Cancel Dialog'
+,p_event_sequence=>10
+,p_triggering_element_type=>'BUTTON'
+,p_triggering_button_id=>wwv_flow_imp.id(8484374297932720)
+,p_bind_type=>'bind'
+,p_execution_type=>'IMMEDIATE'
+,p_bind_event_type=>'click'
+);
+wwv_flow_imp_page.create_page_da_action(
+ p_id=>wwv_flow_imp.id(8485212479932719)
+,p_event_id=>wwv_flow_imp.id(8484424143932720)
+,p_event_result=>'TRUE'
+,p_action_sequence=>10
+,p_execute_on_page_init=>'N'
+,p_name=>'CancelDialog'
+,p_action=>'NATIVE_DIALOG_CANCEL'
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8604074533824601)
+,p_process_sequence=>60
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_EXECUTION_CHAIN'
+,p_process_name=>'ExecutionChain'
+,p_attribute_01=>'N'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_internal_uid=>8604074533824601
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8487754667932717)
+,p_process_sequence=>70
+,p_process_point=>'AFTER_SUBMIT'
+,p_process_type=>'NATIVE_CLOSE_WINDOW'
+,p_process_name=>'DialogClosed'
+,p_attribute_02=>'Y'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_process_when=>'CREATE,SAVE,DELETE'
+,p_process_when_type=>'REQUEST_IN_CONDITION'
+,p_internal_uid=>8487754667932717
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8486920968932717)
+,p_process_sequence=>10
+,p_process_point=>'BEFORE_HEADER'
+,p_region_id=>wwv_flow_imp.id(8480860314932729)
+,p_process_type=>'NATIVE_FORM_INIT'
+,p_process_name=>'Initialiser le panneau Player form'
+,p_error_display_location=>'INLINE_IN_NOTIFICATION'
+,p_internal_uid=>8486920968932717
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8487333556932717)
+,p_process_sequence=>10
+,p_region_id=>wwv_flow_imp.id(8480860314932729)
+,p_parent_process_id=>wwv_flow_imp.id(8604074533824601)
+,p_process_type=>'NATIVE_FORM_DML'
+,p_process_name=>'PLayerFormProcess'
+,p_attribute_01=>'REGION_SOURCE'
+,p_attribute_05=>'Y'
+,p_attribute_06=>'Y'
+,p_attribute_08=>'Y'
+,p_internal_uid=>8487333556932717
+);
+wwv_flow_imp_page.create_page_process(
+ p_id=>wwv_flow_imp.id(8604165775824602)
+,p_process_sequence=>20
+,p_parent_process_id=>wwv_flow_imp.id(8604074533824601)
+,p_process_type=>'NATIVE_PLSQL'
+,p_process_name=>'RegisterPlayerInClubAndSeason'
+,p_process_sql_clob=>wwv_flow_string.join(wwv_flow_t_varchar2(
+'insert into tp_players_clubs (player_id, club_id, season_id)',
+'values (:P21_PLAYER_ID, :P0_CLUB_ID, :P0_SEASON_ID);'))
+,p_process_clob_language=>'PLSQL'
+,p_internal_uid=>8604165775824602
+);
+wwv_flow_imp.component_end;
+end;
+/

@@ -1,0 +1,140 @@
+---
+# ====== Page: Global Page ===================================
+id: 0
+identification: 
+  name: Global Page
+
+page-items: 
+- # ====== Page Item: P0_CLUB_ID ===============================
+  id: 8363428026661701
+  identification: 
+    name: P0_CLUB_ID
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 30
+    region: No Parent
+    slot: REGION_POSITION_05
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P0_SEASON_ID =============================
+  id: 8363595308661702
+  identification: 
+    name: P0_SEASON_ID
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 20
+    region: No Parent
+    slot: REGION_POSITION_05
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P0_USER_ID ===============================
+  id: 8365703923661724
+  identification: 
+    name: P0_USER_ID
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 10
+    region: No Parent
+    slot: REGION_POSITION_05
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+dynamic-actions: 
+- # ====== Dynamic Action: Nouveau =============================
+  id: 10031835873353202
+  identification: 
+    name: Nouveau
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P0_TP_ERROR
+
+  actions: 
+  - # ====== Action: Exécuter le code JavaScript =================
+    id: 10031976014353203
+    identification: 
+      action: Exécuter le code JavaScript
+
+    settings: 
+      code: |
+        //First clear the errors
+            apex.message.clearErrors();
+         
+            // Now show new error
+            apex.message.showErrors([
+                {
+                    type:       "error",
+                    location:   [ "page" ],
+                    message:    $v('P0_TP_ERROR'),
+                    unsafe:     false
+                }]); 
+
+    execution: 
+      sequence: 10
+      event: Nouveau # 10031835873353202
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

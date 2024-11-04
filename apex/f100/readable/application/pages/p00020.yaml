@@ -1,0 +1,593 @@
+---
+# ====== Page: Players =======================================
+id: 20
+identification: 
+  name: Players
+  alias: PLAYERS-PAGE
+  title: '[TP] Joueurs'
+  page-group: Players # 8427287182258872
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - '#APP_FILES#js/GLOBAL#MIN#.js'
+  - '#APP_FILES#js/RoundButton#MIN#.js'
+  - '#APP_FILES#js/PAGE_&APP_PAGE_ID.#MIN#.js'
+
+css: 
+  file-urls: 
+  - '#APP_FILES#css/RoundButton#MIN#.css'
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: PlayersCards ================================
+  id: 8365879750661725
+  identification: 
+    name: PlayersCards
+    type: Cartes
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: 'select * from pck_pages_20.get_players_cards_table(:P0_USER_ID, :P0_SEASON_ID, :P0_CLUB_ID, :P20_FILTER_LETTER, :P20_FILTER_TEAM_ID);'
+    page-items-to-submit: 
+    - P20_FILTER_LETTER
+    - P20_FILTER_TEAM_ID
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    - t-CardsRegion--styleA
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 8365943189661726
+    appearance: 
+      layout: Grid
+      grid-columns: Auto
+
+    card: 
+      primary-key-column-1: CARD_ID
+
+    title: 
+      advanced-formatting: false
+      column: CARD_TITLE
+
+    subtitle: 
+      advanced-formatting: false
+      column: CARD_SUBTITLE
+
+    body: 
+      advanced-formatting: false
+      column: CARD_SUBTEXT
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Initials
+      icon-column: CARD_INITIALS
+      icon-position: Start
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+- # ====== Region: ButtonContainer =============================
+  id: 8366059090661727
+  identification: 
+    name: ButtonContainer
+    type: Contenu statique
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - menu-container
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: MenuRound ===================================
+  id: 8366227092661729
+  identification: 
+    name: MenuRound
+    type: Contenu statique
+
+  layout: 
+    sequence: 20
+    parent-region: ButtonContainer # 8366059090661727
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - menu-round
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: MenuLine ====================================
+  id: 8366513853661732
+  identification: 
+    name: MenuLine
+    type: Contenu statique
+
+  layout: 
+    sequence: 30
+    parent-region: ButtonContainer # 8366059090661727
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - menu-line
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+page-items: 
+- # ====== Page Item: P20_FILTER_LETTER ========================
+  id: 8366765537661734
+  identification: 
+    name: P20_FILTER_LETTER
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 40
+    region: No Parent
+    slot: REGION_POSITION_05
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+- # ====== Page Item: P20_FILTER_TEAM_ID =======================
+  id: 8366820688661735
+  identification: 
+    name: P20_FILTER_TEAM_ID
+    type: Masqué
+
+  settings: 
+    valeur-protégée: true
+
+  layout: 
+    sequence: 50
+    region: No Parent
+    slot: REGION_POSITION_05
+
+  advanced: 
+    warn-on-unsaved-changes: Page Default
+
+  source: 
+    type: Null
+    used: Only when current value in session state is null
+
+  session-state: 
+    data-type: VARCHAR2
+    storage: Per Session (Persistent)
+
+  security: 
+    session-state-protection: Unrestricted
+    store-value-encrypted-in-session-state: true
+    restricted-characters: All characters can be saved.
+
+buttons: 
+- # ====== Button: MainActionButton ============================
+  id: 8366159785661728
+  identification: 
+    button-name: MainActionButton
+    label: Mainactionbutton
+
+  layout: 
+    sequence: 10
+    region: ButtonContainer # 8366059090661727
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    css-classes: 
+    - menu-toggle
+    - u-hot
+    icon: fa-plus
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: AddPlayerRoundButton ========================
+  id: 8366329936661730
+  identification: 
+    button-name: AddPlayerRoundButton
+    label: Ajouter un joueur
+
+  layout: 
+    sequence: 10
+    region: MenuRound # 8366227092661729
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - btn-app
+    - u-hot
+    - need_card_refresh
+    icon: fa-plus-circle-o
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:21:&SESSION.::&DEBUG.:::'
+      page: 21 # Player form
+
+    warn-on-unsaved-changes: Do Not Check
+
+- # ====== Button: FilterRoundButton ===========================
+  id: 8366461736661731
+  identification: 
+    button-name: FilterRoundButton
+    label: Filtrer
+
+  layout: 
+    sequence: 20
+    region: MenuRound # 8366227092661729
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - btn-app
+    - u-hot
+    icon: fa-filter
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+  advanced: 
+    static-id: filter_button
+
+- # ====== Button: Nouveau =====================================
+  id: 8366612126661733
+  identification: 
+    button-name: Nouveau
+    label: Nouveau
+
+  layout: 
+    sequence: 10
+    region: MenuLine # 8366513853661732
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: true
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - btn-app
+    - u-color-34
+    icon: fa-sm fa-universal-access
+
+  behavior: 
+    action: Submit Page
+    execute-validations: true
+    show-processing: false
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: NewPlayerDialogClosed ===============
+  id: 8367102315661738
+  identification: 
+    name: NewPlayerDialogClosed
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Dialog Closed
+    selection-type: jQuery Selector
+    jquery-selector: .need_card_refresh
+
+  actions: 
+  - # ====== Action: RefreshCards ================================
+    id: 8367261817661739
+    identification: 
+      name: RefreshCards
+      action: Régénérer
+
+    affected-elements: 
+      selection-type: Region
+      region: PlayersCards # 8365879750661725
+
+    execution: 
+      sequence: 10
+      event: NewPlayerDialogClosed # 8367102315661738
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: FilterButtonClick ===================
+  id: 8367594427661742
+  identification: 
+    name: FilterButtonClick
+
+  execution: 
+    sequence: 20
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: Button
+    button: FilterRoundButton # 8366461736661731
+
+  actions: 
+  - # ====== Action: GetFilterUrl ================================
+    id: 8367618089661743
+    identification: 
+      name: GetFilterUrl
+      action: Exécuter le code JavaScript
+
+    settings: 
+      code: |
+        let p = get_Promise_Url(22, 'P22_LETTER', $v('P20_FILTER_LETTER'), '$(\'#filter_button\')');
+        
+        p
+        .then(function(data){
+            // close round menu
+            toggleMenus();
+            // go to url returned
+            window.location.href = data;
+        });
+
+    affected-elements: 
+      selection-type: Button
+      button: FilterRoundButton # 8366461736661731
+
+    execution: 
+      sequence: 20
+      event: FilterButtonClick # 8367594427661742
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: FilterDialogClosed ==================
+  id: 8605168031824612
+  identification: 
+    name: FilterDialogClosed
+
+  execution: 
+    sequence: 30
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Dialog Closed
+    selection-type: jQuery Selector
+    jquery-selector: '#filter_button'
+
+  actions: 
+  - # ====== Action: GetDataFromDialog ===========================
+    id: 8605239083824613
+    identification: 
+      name: GetDataFromDialog
+      action: Exécuter le code JavaScript
+
+    settings: 
+      code: |
+        //alert(JSON.stringify(this.data));
+        //alert(this.data.P22_LETTER);
+        $s('P20_FILTER_LETTER', this.data.P22_LETTER);
+
+    execution: 
+      sequence: 10
+      event: FilterDialogClosed # 8605168031824612
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: FilterChanged =======================
+  id: 8605367328824614
+  identification: 
+    name: FilterChanged
+
+  execution: 
+    sequence: 40
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Change
+    selection-type: Item(s)
+    item(s): 
+    - P20_FILTER_LETTER
+
+  actions: 
+  - # ====== Action: RefreshCards ================================
+    id: 8605481926824615
+    identification: 
+      name: RefreshCards
+      action: Régénérer
+
+    affected-elements: 
+      selection-type: Region
+      region: PlayersCards # 8365879750661725
+
+    execution: 
+      sequence: 10
+      event: FilterChanged # 8605367328824614
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+

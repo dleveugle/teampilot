@@ -1,0 +1,446 @@
+---
+# ====== Page: Teams =========================================
+id: 30
+identification: 
+  name: Teams
+  alias: TEAMS
+  title: Teams
+  page-group: Team # 9326547559122955
+
+appearance: 
+  page-mode: Normal
+  page-template: Theme Default
+  template-options: 
+  - '#DEFAULT#'
+
+navigation-menu: 
+  override-user-interface-level: false
+
+navigation: 
+  cursor-focus: Do not focus cursor
+  warn-on-unsaved-changes: true
+
+javascript: 
+  file-urls: 
+  - '#APP_FILES#js/RoundButton#MIN#.js'
+  - '#APP_FILES#js/GLOBAL#MIN#.js'
+  - '#APP_FILES#js/Ajax#MIN#.js'
+  - '#APP_FILES#js/PAGE_&APP_PAGE_ID.#MIN#.js'
+
+css: 
+  file-urls: 
+  - '#APP_FILES#css/RoundButton#MIN#.css'
+
+security: 
+  authentication: Page Requires Authentication
+  deep-linking: Application Default
+  page-access-protection: Arguments Must Have Checksum
+  form-auto-complete: Off
+  browser-cache: Application Default
+
+session-management: 
+  rejoin-sessions: Application Default
+
+advanced: 
+  enable-duplicate-page-submissions: Yes - Enable page to be re-posted
+  reload-on-submit: Only for Success
+
+server-cache: 
+  caching: Disabled
+
+regions: 
+- # ====== Region: TeamsCard ===================================
+  id: 8606268848824623
+  identification: 
+    name: TeamsCard
+    type: Cartes
+
+  source: 
+    location: Local Database
+    type: SQL Query
+    sql-query: 'select * from pck_pages_30.get_teams_cards_table(:P0_USER_ID, :P0_SEASON_ID, :P0_CLUB_ID);'
+
+  layout: 
+    sequence: 10
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Cards Container
+    template-options: 
+    - '#DEFAULT#'
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Region
+
+  advanced: 
+    static-id: teamsCard
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    id: 9346933319913608
+    appearance: 
+      layout: Grid
+      grid-columns: 3 Columns
+
+    card: 
+      primary-key-column-1: CARD_ID
+
+    title: 
+      advanced-formatting: true
+      html-expression: '&CARD_TITLE!RAW.'
+
+    subtitle: 
+      advanced-formatting: false
+      column: CARD_SUBTITLE
+
+    body: 
+      advanced-formatting: true
+      html-expression: '&CARD_TEXT!RAW.'
+
+    secondary-body: 
+      advanced-formatting: false
+
+    icon-and-badge: 
+      icon-source: Initials
+      icon-column: CARD_ICON
+      icon-position: Start
+
+    media: 
+      advanced-formatting: false
+      source: No Media
+
+    performance: 
+      lazy-loading: false
+
+    pagination: 
+      type: Scroll
+      show-total-count: false
+
+- # ====== Region: ButtonContainer =============================
+  id: 17028033489192561
+  identification: 
+    name: ButtonContainer
+    type: Contenu statique
+
+  layout: 
+    sequence: 20
+    parent-region: No Parent
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - menu-container
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: MenuRound ===================================
+  id: 17028201491192563
+  identification: 
+    name: MenuRound
+    type: Contenu statique
+
+  layout: 
+    sequence: 20
+    parent-region: ButtonContainer # 17028033489192561
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - menu-round
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+- # ====== Region: MenuLine ====================================
+  id: 17028488252192566
+  identification: 
+    name: MenuLine
+    type: Contenu statique
+
+  layout: 
+    sequence: 30
+    parent-region: ButtonContainer # 17028033489192561
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+
+  appearance: 
+    template: Blank with Attributes (No Grid)
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - menu-line
+    render-components: Above Content
+
+  accessibility: 
+    use-landmark: true
+    landmark-type: Template Default
+
+  advanced: 
+    region-display-selector: false
+    exclude-title-from-translation: false
+
+  customization: 
+    customizable: Not Customizable By End Users
+
+  attributes: 
+    settings: 
+      sortie-au-format: HTML
+      développer-les-raccourcis: false
+
+buttons: 
+- # ====== Button: MainActionButton ============================
+  id: 8662273182530829
+  identification: 
+    button-name: MainActionButton
+    label: Mainactionbutton
+
+  layout: 
+    sequence: 10
+    region: ButtonContainer # 17028033489192561
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    - t-Button--large
+    css-classes: 
+    - menu-toggle
+    - u-hot
+    icon: fa-plus
+
+  behavior: 
+    action: Defined by Dynamic Action
+    execute-validations: true
+
+- # ====== Button: AddTeamRoundButton ==========================
+  id: 8663620420530827
+  identification: 
+    button-name: AddTeamRoundButton
+    label: Ajouter une équipe
+
+  layout: 
+    sequence: 10
+    region: MenuRound # 17028201491192563
+    slot: BODY
+    start-new-layout: false
+    start-new-row: true
+    column: Automatic
+    new-column: true
+    column-span: Automatic
+    alignment: Left center
+
+  appearance: 
+    button-template: Icon
+    hot: false
+    template-options: 
+    - '#DEFAULT#'
+    css-classes: 
+    - btn-app
+    - u-hot
+    - need_card_refresh
+    icon: fa-plus-circle-o
+
+  behavior: 
+    action: Redirect to Page in this Application
+    target: 
+      url: 'f?p=&APP_ID.:31:&SESSION.::&DEBUG.::P31_CLUB_ID,P31_SEASON_ID:&P0_CLUB_ID.,&P0_SEASON_ID.'
+      page: 31 # Team form
+      values: 
+        p31_club_id: '&P0_CLUB_ID.'
+        p31_season_id: '&P0_SEASON_ID.'
+
+    warn-on-unsaved-changes: Do Not Check
+
+dynamic-actions: 
+- # ====== Dynamic Action: OnCloseDialog =======================
+  id: 9347223502913611
+  identification: 
+    name: OnCloseDialog
+
+  execution: 
+    sequence: 10
+    event-scope: Static
+    type: Immediate
+
+  when: 
+    event: Dialog Closed
+    selection-type: JavaScript Expression
+    javascript-expression: window
+
+  client-side-condition: 
+    type: JavaScript expression
+    javascript-expression: this.browserEvent != "load" && (this.data.dialogPageId == "32" || this.data.dialogPageId == "31")
+
+  actions: 
+  - # ====== Action: Régénérer ===================================
+    id: 9347358618913612
+    identification: 
+      action: Régénérer
+
+    affected-elements: 
+      selection-type: Region
+      region: TeamsCard # 8606268848824623
+
+    execution: 
+      sequence: 10
+      event: OnCloseDialog # 9347223502913611
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+- # ====== Dynamic Action: ClickOnTeamEllipsisMenu =============
+  id: 9347423156913613
+  identification: 
+    name: ClickOnTeamEllipsisMenu
+
+  execution: 
+    sequence: 20
+    event-scope: Dynamic
+    type: Immediate
+
+  when: 
+    event: Click
+    selection-type: jQuery Selector
+    jquery-selector: .tp-team-menu
+
+  actions: 
+  - # ====== Action: DisplayEllipsisMenu =========================
+    id: 9347523703913614
+    identification: 
+      name: DisplayEllipsisMenu
+      action: Exécuter le code JavaScript
+
+    settings: 
+      code: |
+        // display ellipsis menu
+        showTeamEllipsisMenu(this.triggeringElement);
+
+    execution: 
+      sequence: 10
+      event: ClickOnTeamEllipsisMenu # 9347423156913613
+      fire-when-event-result-is: True
+      fire-on-initialization: false
+
+processes: 
+- # ====== Process: GetTeamEllipsisMenu ========================
+  id: 9348288402913621
+  identification: 
+    name: GetTeamEllipsisMenu
+    type: Exécuter le code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      pck_pages_30.get_team_ellipsis_menu(
+          p_user_id => apex_application.g_x01,
+          p_team_id => apex_application.g_x02
+      );
+
+  execution: 
+    sequence: 10
+    point: Ajax Callback
+    run-process: Once Per Page Visit (default)
+
+- # ====== Process: AjaxRouter =================================
+  id: 10032317119353207
+  identification: 
+    name: AjaxRouter
+    type: Exécuter le code
+    execution-chain: None
+
+  source: 
+    location: Local Database
+    language: PL/SQL
+    pl/sql-code: |
+      declare 
+          l_process varchar2(50) := upper(apex_application.g_x01);
+      begin
+          case 
+              when l_process = 'GETTEAMELLIPSISMENU' then
+                  pck_pages_30.get_team_ellipsis_menu(
+                      p_user_id => apex_application.g_x02,
+                      p_team_id => apex_application.g_x03
+                  );
+              when l_process = 'MOVETEAMPOSITION' then 
+                  pck_pages_30.move_team_position(
+                      p_team_id => apex_application.g_x02,
+                      p_direction => apex_application.g_x03
+                  );
+          end case;
+      end;
+
+  execution: 
+    sequence: 20
+    point: Ajax Callback
+    run-process: Once Per Page Visit (default)
+

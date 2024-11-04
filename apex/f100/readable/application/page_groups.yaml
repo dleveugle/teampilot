@@ -1,0 +1,36 @@
+---
+- # ====== Page Group: Administration ==========================
+  id: 8253457584413288
+  identification: 
+    name: Administration
+
+- # ====== Page Group: User Settings ===========================
+  id: 8353031138412562
+  identification: 
+    name: User Settings
+
+- # ====== Page Group: Login ===================================
+  id: 8394546595825896
+  identification: 
+    name: Login
+
+- # ====== Page Group: Club ====================================
+  id: 8417822145711795
+  identification: 
+    name: Club
+
+- # ====== Page Group: Players =================================
+  id: 8427287182258872
+  identification: 
+    name: Players
+
+- # ====== Page Group: Team ====================================
+  id: 9326547559122955
+  identification: 
+    name: Team
+
+- # ====== Page Group: Competition =============================
+  id: 9724339234903066
+  identification: 
+    name: Competition
+
